@@ -5,16 +5,18 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha **/*.test.js"
+    "test": "mocha apalah/**/*.test.js --reporter=mochawesome --reporter-options reportDir=apalah-report,reportFilename=apalah-test-file"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@reportportal/agent-js-mocha": "^5.0.4",
     "ajv": "^8.13.0",
     "chai": "^5.1.0",
     "chai-json-schema-ajv": "^5.2.4",
     "mocha": "^10.4.0",
+    "mochawesome": "^7.1.3",
     "supertest": "^7.0.0"
   }
 }

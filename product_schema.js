@@ -1,4 +1,4 @@
-const schema = {
+const product = {
     type: 'object',
     properties: {
         id: { type: 'number' },
@@ -13,4 +13,11 @@ const schema = {
     }
 }
 
-export default schema;
+const deleteSchema = {
+    type: 'object',
+    properties: {
+        product: product,
+        isDeleted: { type: 'bool', value: true }
+    }
+}
+export {product, deleteSchema};

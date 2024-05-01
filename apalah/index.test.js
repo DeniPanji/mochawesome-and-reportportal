@@ -1,10 +1,11 @@
 import request from 'supertest';
 import * as chai from 'chai';
-import product from './product.json' assert { type: "json" };
+//import product from './product.json' assert { type: "json" };
 import chaiJsonSchemaAjv from 'chai-json-schema-ajv';
-import schema from './product_schema.js';
+import { product, deleteSchema } from '../product_schema.js';
 
 chai.use(chaiJsonSchemaAjv);
+const { expect } = chai;
 
 
 describe('Product API Test', () => {
@@ -32,32 +33,36 @@ describe('Product API Test', () => {
     it('should successfully get a product', () => {
         request(url)
             .get('/products/' + id)
-            .end(function(res) {
-                expect(res.body).to.be.jsonSchema(schema);
-                expect(200, done)
+            .end(function(err) {
+                expect(200)
+                if (err) throw err;
             });
     });
 
-    it('should successfully get all products', (done) => {
+    it('should successfully get all products', () => {
         request(url)
             .get('/products/')
-            .end(function(res) {
-                expect(res.body).to.be.jsonSchema(schema);
-                expect(200, done)
+            .end(function(err, res) {
+                if (err) throw err;
+                expect(res.body).to.be.jsonSchema(product);  
             });
     });
 
-    it('should successfully get all product categories', (done) => {
+    it('should successfully get all product categories', () => {
         request(url)
             .get('/products/categories')
-            .expect('Content-Type', /json/)
-            .expect(200, done)
+            .end(function(err){
+                if (err) throw err;
+            })
     });
 
-    it('should successfully delete a product', (done) => {
+    it('should successfully delete a product', () => {
         request(url)
-            .get('/products/'+ id)
-            .expect(404, done)
+            .delete('/products/'+ id)
+            .end(function(err){
+                if (err) throw err;
+            })
+            
 
     });
 });

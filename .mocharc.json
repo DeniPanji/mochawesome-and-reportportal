@@ -1,0 +1,8 @@
+{
+    "reporter": "mochawesome", 
+    "reporterOptions": {
+        "reportDir": "apalah-report",
+        "reportFilename": "apalah-test-file",
+        "timestamp": "longDate" 
+    }
+}
